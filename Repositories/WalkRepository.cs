@@ -70,10 +70,10 @@ namespace DogGo.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                SELECT w.Id, w.date, w.duration, w.walkerId, w.dogId, d.id, d.ownerId, owner.name
+                  SELECT w.Id, w.date, w.duration, w.walkerId, w.dogId, d.Id, d.ownerId, o.name
                 from walks w
-                left join dog d on dog.id = walks.dogId
-                left join owner o on dog.ownerId = owner.id
+                left join dog d on d.Id = w.dogId
+                left join owner o on d.ownerId = o.id
                 WHERE WalkerId = @walkerId
             ";
 
